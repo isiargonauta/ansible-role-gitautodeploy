@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Richard Hidalgo
-  description: Machines with this role will have a small HTTP server that listens for Web hook requests sent from GitHub, GitLab or Bitbucket servers. That application allows you to continuously and automatically deploy you projects each time you push new commits to your repository. See this [link](http://olipo186.github.io/Git-Auto-Deploy/)
+  description: Machines with this role will have a small HTTP server that listens for Web hook requests sent from GitHub, GitLab or Bitbucket servers. See this [link](http://olipo186.github.io/Git-Auto-Deploy/)
   company: ISI Argonauta
   # Some suggested licenses:
   # - BSD (default)
@@ -147,7 +147,7 @@ galaxy_info:
   # Below are all categories currently available. Just as with
   # the platforms above, uncomment those that apply to your role.
   #
-  #categories:
+  categories:
   #- cloud
   #- cloud:ec2
   #- cloud:gce
