@@ -1,0 +1,6 @@
+---
+# tasks file for argonauta.git-auto-deploy
+- include: global_install.yml
+  when: gitautodeploy_install_scope == 'global'
+- include: user_install.yml
+  when: gitautodeploy_install_scope == 'user'

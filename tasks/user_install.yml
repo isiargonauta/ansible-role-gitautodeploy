@@ -1,0 +1,38 @@
+---
+# tasks file for argonauta.git-auto-deploy
+- name: Clone git-auto-deploy repo
+  git: 
+    repo=https://github.com/olipo186/Git-Auto-Deploy.git
+    dest=/home/{{ ansible_ssh_user }}/Git-Auto-Deploy
+    accept_hostkey=yes
+
+- name: Test if pip is globally installed
+  command: pip
+  register: result
+  ignore_errors: True
+
+- name: Test if pip is locally installed
+  command: /home/{{ ansible_ssh_user }}/.local/bin/pip
+  register: result
+  ignore_errors: True
+  when: result|failed
+
+- name: Install pip | Download get_pip
+  get_url: url=https://bootstrap.pypa.io/get-pip.py dest=/home/{{ ansible_ssh_user }}
+  when: result|failed
+
+- name: Install pip | Execute get_pip
+  command:  python /home/{{ ansible_ssh_user }}/get-pip.py --user
+  when: result|failed
+
+- name: Transfer configuration with repo list                                   
+  template: 
+    src: config.json.j2 
+    dest: /home/{{ ansible_ssh_user }}/Git-Auto-Deploy/config.json
+    backup: yes
+    force: yes
+
+- name: Start Auto Deploy service
+  command: python /home/{{ ansible_ssh_user }}/Git-Auto-Deploy/gitautodeploy --config /home/{{ ansible_ssh_user }}/Git-Auto-Deploy/config.json
+  async: 45
+  poll: 0

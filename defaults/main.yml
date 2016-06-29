@@ -1,0 +1,9 @@
+---
+# defaults file for argonauta.gitautodeploy
+gitautodeploy_install_scope: user
+gitautodeploy_service_port: 8001
+gitautodeploy_repo1_name: Git-Auto-Deploy
+gitautodeploy_push_trigger_repo1_base_url: https://github.com/olipo186
+gitautodeploy_push_trigger_repo1_branch: master
+gitautodeploy_pull_trigger_repo1_base_url: https://api.github.com/repos/olipo186
+gitautodeploy_pull_trigger_repo1_branch: testing-branch

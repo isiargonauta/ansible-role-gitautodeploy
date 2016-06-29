@@ -1,0 +1,40 @@
+{
+  "pidfilepath": "~/.gitautodeploy.pid",
+  "logfilepath": "~/gitautodeploy.log",
+  "host": "0.0.0.0",
+  "port": {{ gitautodeploy_service_port }},
+  "global_deploy": [
+    "echo Deploy started!",
+    "echo Deploy completed!"
+  ],
+  "log-level": "INFO",
+  "repositories": [
+    {
+      "url": "{{ gitautodeploy_push_trigger_repo1_base_url }}/{{ gitautodeploy_repo1_name }}.git",
+      "branch": "{{ gitautodeploy_push_trigger_repo1_branch }}",
+      "remote": "origin",
+      "path": "~/repositories/{{ gitautodeploy_repo1_name }}",
+      "deploy": "echo deploying"
+    },
+    {
+      "url": "https://github.com/github/gitignore",
+      "path": "~/repositories/gitignore"
+    },
+    {
+      "url": "git@gitlab.com:gitlab-org/gitlab-ce.git",
+      "path": "~/repositories/gitignore"
+    },
+    {
+      "url": "{{ gitautodeploy_pull_trigger_repo1_base_url }}/{{ gitautodeploy_repo1_name }}",
+      "path": "~/repositories/{{ gitautodeploy_repo1_name }}.staging",
+      "deploy": "echo deploying after pull request",
+      "filters": [
+        {
+          "type": "pull-request-filter",
+          "action": "opened",
+          "ref": "{{ gitautodeploy_pull_trigger_repo1_branch }}"
+        }
+      ]
+    }
+  ]
+}
