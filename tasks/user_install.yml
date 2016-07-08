@@ -33,6 +33,4 @@
     force: yes
 
 - name: Start Auto Deploy service
-  command: python /home/{{ ansible_ssh_user }}/Git-Auto-Deploy/gitautodeploy --config /home/{{ ansible_ssh_user }}/Git-Auto-Deploy/config.json
-  async: 45
-  poll: 0
+  command: python /home/{{ ansible_ssh_user }}/Git-Auto-Deploy/gitautodeploy --daemon --quiet --config /home/{{ ansible_ssh_user }}/Git-Auto-Deploy/config.json
